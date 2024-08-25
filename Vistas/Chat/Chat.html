@@ -1,0 +1,57 @@
+<div id="contenidoCentral">     
+   <?php if(isset($_SESSION['mensajeenviadoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['mensajeenviadoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('mensajeenviadoerror'); ?>
+    <?php if(mysqli_num_rows($listadoChats) == 0) : ?>
+        <h1>No Hay Ningun Chat</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="chatVendedor">
+            <h1 class="tituloCreacionGestiones">Chat</h1>
+            <hr>
+            <div id="seccionUsuarios">
+                <?php while($chats = $listadoChats -> fetch_object()) : ?>
+                    <a href="<?=rutaInicio?><?=chat?><?=verMensajes?>&idContacto=<?=$chats -> idUsuarioChat?>">
+                        <div id="usuarioChat">
+                            <img src="Recursos/ImagenesUsuarios/<?=$chats -> fotoChat?>" alt="Usuario">
+                            <h2><?=$chats -> nombreChat?></h2>
+                            <p><?=$chats -> apellidoChat?></p>
+                        </div>
+                    </a>
+                <?php endwhile; ?>
+            </div>
+            <div id="seccionChat">
+                <form action="<?=rutaInicio?><?=chat?><?=enviarMensaje?>" method="post">
+                    <div id="panelChatVendedor">
+                        <?php if(!isset($listadoMensajes)) : ?>
+                            <h2>Presiona un chat para comenzar una conversacion</h2>
+                        <?php else : ?>
+                            <?php while($mensajes = $listadoMensajes -> fetch_object()) : ?>
+                                <?php if($mensajes -> idRemitente == $_SESSION['loginexitoso'] -> id && $mensajes -> mensaje != null) : ?>
+                                    <div id="mensajeenviado">
+                                        <h3><?=$mensajes -> fechaHora?></h3>
+                                        <p><?=Ayudas::desencriptarContenido($mensajes -> mensaje)?></p>
+                                    </div>
+                                <?php elseif($mensajes -> idDestinatario == $_SESSION['loginexitoso'] -> id && $mensajes -> mensaje != null) : ?>
+                                    <div id="mensajerecibido">
+                                        <h3><?=$mensajes -> fechaHora?></h3>
+                                        <p><?=Ayudas::desencriptarContenido($mensajes -> mensaje)?></p>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php if(isset($listadoMensajes)) : ?>
+                        <div id="campoEnviarMensajeVendedor">
+                            <input type="text" name="mensaje" required>
+                        </div>
+                        <input type="submit" class="" value="Enviar">
+                    <?php endif; ?>
+                </form>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

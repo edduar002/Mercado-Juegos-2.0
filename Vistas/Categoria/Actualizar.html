@@ -1,0 +1,26 @@
+<div id="contenidoCentral"> 
+    <?php if(isset($_SESSION['actualizarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarcategoriaerror'); ?>
+    <?php if(isset($_SESSION['actualizarcategoriasugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizarcategoriasugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarcategoriasugerencia'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Actualizar categoria</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=categoria?><?=actualizarCategoria?>&id=<?=$categoriaUnica -> id?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="nombrecatact">Nombre</label>
+                <input type="text" name="nombrecatact" value="<?=$categoriaUnica -> nombre?>" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Actualizar">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="contenidoCentral">   
+    <?php if(isset($_SESSION['loginexitosoinfoa'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['loginexitosoinfoa']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('loginexitosoinfoa'); ?>
+    <?php if(isset($_SESSION['errorinesperado'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['errorinesperado']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('errorinesperado'); ?>
+    <div id="administradorpanel">
+        <img src="Recursos/Logotipos/administrar.png" alt="Logo administrar">
+        <ul>
+            <li>
+                <a href="<?=rutaInicio?><?=administrador?><?=verDestacados?>">Ver destacados</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=gestionarUsuario?>">Gestionar usuarios</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=gestionarCategoria?>">Gestionar categorias</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=gestionarConsola?>">Gestionar consolas</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=gestionarUso?>">Gestionar usos</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=gestionarEstado?>">Gestionar estados</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=verAdministradores?>">Ver administradores</a>
+                <a href="<?=rutaInicio?><?=administrador?><?=verBloqueos?>">Ver bloqueos</a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['actualizarclaveacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarclaveacierto']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('actualizarclaveacierto'); ?>
+    <?php if(isset($_SESSION['actualizarclaveerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarclaveerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('actualizarclaveerror'); ?>
+    <div id="loginYRegistro">
+        <h1>Cambio De Contraseña</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=administrador?><?=actualizarClave?>" method="post" enctype="multipart/form-data">
+            <div id="bloqueTextoRegistro">
+                <label for="passwordactual">Contraseña Actual</label>
+                <input type="password" name="passwordactual" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="passwordnueva">Contraseña Nueva</label>
+                <input type="password" name="passwordnueva" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Cambiar">
+        </form>
+    </div>
+</div>

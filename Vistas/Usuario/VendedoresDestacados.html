@@ -1,0 +1,25 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoDestacados) == 0) : ?>
+        <h1>No Hay Vendedores Destacados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Vendedores mas destacados (Los 5 Que Mas Videojuegos Hayan Vendido)</h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($destacados = $listadoDestacados -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesUsuarios/<?=$destacados -> fotoVendedor?>" alt="Vendedor">
+                    <h5><?=$destacados -> nombreVendedor?></h5>
+                    <h5><?=$destacados -> apellidoVendedor?></h5>
+                    <h5><?=$destacados -> fechaRegistroVendedor?></h5>
+                    <h5>Años: <?=Ayudas::obtenerEdad($destacados -> fechaNacimiento)?></h5>
+                    <h5>Videojuegos vendidos: <?=$destacados -> videojuegos?></h5>
+                    <h5>Cantidades vendidas: <?=$destacados -> cantidad?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

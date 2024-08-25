@@ -1,0 +1,14 @@
+<div id="contenidoCentral">      
+    <div id="busqueda">
+        <h1>Usos que contienen "<?=$nombre?>"</h1>
+        <hr>
+        <?php while($listadoUsosBuscados = $listadoUsos -> fetch_object()) : ?>
+            <div class="videojuegoBusqueda">
+                <img src="Recursos/Logotipos/Administrar.png">
+                <h2><?=$listadoUsosBuscados -> nombre?></h2>
+                <a href="<?=rutaInicio?><?=uso?><?=editarUso?>&id=<?=$listadoUsosBuscados -> id?>" class="button button-actualizarGestionBusqueda">Actualizar</a>
+                <a href="<?=rutaInicio?><?=uso?><?=eliminarUso?>&id=<?=$listadoUsosBuscados -> id?>" class="button button-eliminarGestionBusqueda">Eliminar</a>
+            </div>
+        <?php endwhile;?>
+    </div>
+</div>

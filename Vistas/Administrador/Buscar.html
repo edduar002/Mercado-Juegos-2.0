@@ -1,0 +1,15 @@
+<div id="contenidoCentral">      
+    <div id="busqueda">
+        <h1>Administradores que contienen "<?=$nombre?>"</h1>
+        <hr>
+        <?php while($listadoAdministradoresBuscados = $listadoAdministradores -> fetch_object()) : ?>
+            <div class="gestionUsuariosLista">
+                <img src="Recursos/ImagenesAdministradores/<?=$listadoAdministradoresBuscados -> foto?>">
+                <h3><?=$listadoAdministradoresBuscados -> nombre?></h3>
+                <h3><?=$listadoAdministradoresBuscados -> apellido?></h3>
+                <h3>Edad: <?= Ayudas::obtenerEdad($listadoAdministradoresBuscados -> fechaNacimiento)?> años</h3>
+                <h4>Fecha de registro: <?=$listadoAdministradoresBuscados -> fechaRegistro?></h4>
+            </div>
+        <?php endwhile;?>
+    </div>
+</div>

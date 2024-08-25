@@ -1,0 +1,27 @@
+<div id="contenidoCentral">    
+    <?php if(mysqli_num_rows($listaBloqueos) == 0) : ?>
+        <h1>No hay bloqueos</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>  
+    <h1>Bloqueos</h1>
+    <hr>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Bloqueador</th>
+                    <th>Bloqueado</th>
+                    <th>Motivo</th>
+                    <th>Fecha y hora</th>
+                </tr>
+                <?php while($bloqueos = $listaBloqueos -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$bloqueos -> nombreBloqueador?> <?=$bloqueos -> apellidosBloqueador?></td>
+                        <td><?=$bloqueos -> nombreBloqueado?> <?=$bloqueos -> apellidosBloqueado?></td>
+                        <td><?=$bloqueos -> motivoBloqueo?></td>
+                        <td><?=$bloqueos -> fechaBloqueo?></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

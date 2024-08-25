@@ -1,0 +1,74 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['eliminarcategoriaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarcategoriaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarcategoriaacierto'); ?>
+    <?php if(isset($_SESSION['restaurarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarcategoriaerror'); ?>
+    <?php if(isset($_SESSION['restaurarcategoriaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['restaurarcategoriaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarcategoriaacierto'); ?>
+    <?php if(isset($_SESSION['actualizarcategoriaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarcategoriaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarcategoriaacierto'); ?>
+    <?php if(isset($_SESSION['guardarcategoriaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarcategoriaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarcategoriaacierto'); ?>
+    <?php if(isset($_SESSION['eliminarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarcategoriaerror'); ?>
+    <?php if(isset($_SESSION['actualizarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarcategoriaerror'); ?>
+    <a href="<?=rutaInicio?><?=categoria?><?=verCategoriasEliminadas?>">Ver categorias eliminadas</a>
+    <?php if(mysqli_num_rows($listadoCategorias) == 0) : ?>
+        <h1>No hay categorias creadas</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=categoria?><?=buscarCategoria?>" method="post">
+                <input type="text" name="categoriab" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <h1>Gestion de categorias</h1>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($categorias = $listadoCategorias -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$categorias -> id?></td>
+                        <td><?=$categorias -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=categoria?><?=editarCategoria?>&id=<?=$categorias -> id?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href="<?=rutaInicio?><?=categoria?><?=eliminarCateogoria?>&id=<?=$categorias -> id?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+    <a href="<?=rutaInicio?><?=categoria?><?=crearCategoria?>" class="button button-crearGestion">Crear</a>
+</div>

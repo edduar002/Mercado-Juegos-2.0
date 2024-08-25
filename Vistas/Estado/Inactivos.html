@@ -1,0 +1,30 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['restaurarestadoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarestadoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarestadoerror'); ?>
+    <?php if(mysqli_num_rows($listadoEstados) == 0) : ?>
+        <h1>No hay estados eliminados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Estados eliminados</h1>
+        <hr>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($estados = $listadoEstados -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$estados -> id?></td>
+                        <td><?=$estados -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=estado?><?=restaurarEstado?>&id=<?=$estados -> id?>" class="button button-eliminarVideojuego">Recuperar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

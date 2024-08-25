@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Juegos</title>
+    <link rel="stylesheet" href="Recursos/CSS/Hoja.css">
+</head>
+<body>
+    <div id="contenedor">
+        <!-- SECCION CABECERA -->
+        <?php $datosUsuario = Ayudas::mostrarDatosUsuario(); ?>
+        <?php $datosAdmin = Ayudas::mostrarDatosAdministrador(); ?>
+        <header id="cabecera">
+            <a href="<?=rutaInicio?><?=videojuego?><?=inicio?>">
+                <div id="titulo">
+                    <img src="Recursos/Logotipos/Logo.png" alt="Logo tienda">
+                    <h1>MERCADO JUEGOS</h1>
+                </div>
+            </a>
+            <?php if(!isset($_SESSION['loginexitosoa'])) : ?>
+                <form action="<?=rutaInicio?><?=videojuego?><?=buscar?>" method="post">
+                    <div id="buscador">
+                        <input type="text" placeholder="Busca un videojuego" name="nombrebus" required>
+                        <input type="image" src="Recursos/Logotipos/lupa.png" alt="Logo tienda">
+                    </div>
+                </form>
+            <?php endif; ?> 
+            <div id="menuPrincipal">
+                <ul>
+                    <?php if(isset($_SESSION['loginexitoso']) || isset($_SESSION['loginexitosoa'])) : ?>
+                        <?php if(isset($_SESSION['loginexitosoa']) && !(isset($_SESSION['loginexitoso']))) : ?>
+                            <li><img src="Recursos/ImagenesAdministradores/<?=$datosAdmin -> foto?>" alt="Logo usuario">Hola!, <?=$datosAdmin -> nombre?></a>
+                            <ul>
+                                <li><a href="<?=rutaInicio?><?=administrador?><?=miPerfil?>">Mi perfil</a></li>
+                                <li><a href="<?=rutaInicio?><?=administrador?><?=cambiarClave?>">Cambiar Clave</a></li>
+                            </ul>
+                        <?php elseif(isset($_SESSION['loginexitoso']) && !(isset($_SESSION['loginexitosoa']))) : ?>
+                            <li>
+                                <a href="<?=rutaInicio?><?=carrito?><?=verCarrito?>">
+                                    <img src="Recursos/Logotipos/car.png" alt="Logo carrito">
+                                </a>
+                            </li>
+                            <li>
+                                <img src="Recursos/ImagenesUsuarios/<?=$datosUsuario -> foto?>" alt="Logo usuario">Hola!, <?=$datosUsuario -> nombre?></a>
+                            <ul>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=miPerfil?>">Mi Perfil</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=cambiarClave?>">Cambiar Clave</a></li>
+                                <li><a href="<?=rutaInicio?><?=favorito?><?=verFavorito?>">Mis Favoritos</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=videojuegos?>">Mis Videojuegos</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=envios?>">Mis Envios</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=compras?>">Mis Compras</a></li>
+                                <li><a href="<?=rutaInicio?><?=videojuego?><?=crear?>">Vender</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=ventas?>">Mis Ventas</a></li>
+                                <li><a href="<?=rutaInicio?><?=chat?><?=chatear?>">Mis Chats</a></li>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=bloqueos?>">Mis Bloqueos</a></li>
+                        <?php endif; ?>
+                                <li><a href="<?=rutaInicio?><?=usuario?><?=logout?>">Cerrar sesion</a></li>
+                            </ul>
+                        </li>
+                    <?php else : ?>
+                        <li><a href="<?=rutaInicio?><?=usuario?><?=login?>">Login</a></li>
+                        <li><a href="<?=rutaInicio?><?=usuario?><?=registro?>">Registro</a></li>
+                    <?php endif; ?> 
+                </ul>
+            </div>
+        </header>

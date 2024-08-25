@@ -1,0 +1,14 @@
+<div id="contenidoCentral">      
+    <div id="busqueda">
+        <h1>Categorias que contienen "<?=$nombre?>"</h1>
+        <hr>
+        <?php while($listadoCategoriasBuscadas = $listadoCategorias -> fetch_object()) : ?>
+            <div class="videojuegoBusqueda">
+                <img src="Recursos/Logotipos/Administrar.png">
+                <h2><?=$listadoCategoriasBuscadas -> nombre?></h2>
+                <a href="<?=rutaInicio?><?=categoria?><?=editarCategoria?>&id=<?=$listadoCategoriasBuscadas -> id?>" class="button button-actualizarGestionBusqueda">Actualizar</a>
+                <a href="<?=rutaInicio?><?=categoria?><?=eliminarCateogoria?>&id=<?=$listadoCategoriasBuscadas -> id?>" class="button button-eliminarGestionBusqueda">Eliminar</a>
+            </div>
+        <?php endwhile;?>
+    </div>
+</div>

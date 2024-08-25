@@ -1,0 +1,20 @@
+<div id="contenidoCentral">  
+    <?php if(isset($_SESSION['guardarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarconsolaerror'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Crear consola</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=consola?><?=guardarConsola?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="nombrecon">Nombre</label>
+                <input type="text" name="nombrecon" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Crear">
+        </form>
+    </div>
+</div>

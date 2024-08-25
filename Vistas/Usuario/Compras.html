@@ -1,0 +1,49 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['verCompraError'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['verCompraError']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('verCompraError'); ?>
+    <?php if(isset($_SESSION['comprobanteacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['comprobanteacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('comprobanteacierto'); ?>
+    <?php if(isset($_SESSION['comprobanteerror'])) : ?>
+    <div class="alerta alerta-error">
+        <?=$_SESSION['comprobanteerror']; ?>
+    </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('comprobanteerror'); ?>
+    <?php if(mysqli_num_rows($listadoCompras) == 0) : ?>
+        <h1>No Hay Ninguna Compra</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="comprasYVentas">
+            <h1>Mis Compras</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Factura</th>
+                    <th>Fecha y hora de realizacion</th>
+                </tr>
+                <?php while($lista = $listadoCompras -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$lista -> numeroFactura?></td>
+                        <td><?=$lista -> fechaHora?></td>
+                        <?php if($lista -> idEstado != 1) : ?>
+                            <td><a href="<?=rutaInicio?><?=transaccion?><?=verCompra?>&factura=<?=$lista -> numeroFactura?>">Ver detalle completo de la compra</a></td>
+                        <?php else : ?>   
+                            <form action="<?=rutaInicio?><?=transaccion?><?=subirComprobante?>&factura=<?=$lista -> numeroFactura?>" method="post" enctype="multipart/form-data">
+                                <td><input type="file" name="comprobante" accept="image/*" required></td>
+                                <td><input type="submit" value="Adjuntar comprobante"></td>
+                            </form>
+                        <?php endif; ?>  
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

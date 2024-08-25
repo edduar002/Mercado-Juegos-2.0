@@ -1,0 +1,14 @@
+<div id="contenidoCentral">      
+    <div id="busqueda">
+        <h1>Estados que contienen "<?=$nombre?>"</h1>
+        <hr>
+        <?php while($listadoEstadosBuscados = $listadoEstados -> fetch_object()) : ?>
+            <div class="videojuegoBusqueda">
+                <img src="Recursos/Logotipos/Administrar.png">
+                <h2><?=$listadoEstadosBuscados -> nombre?></h2>
+                <a href="<?=rutaInicio?><?=estado?><?=editarEstado?>&id=<?=$listadoEstadosBuscados -> id?>" class="button button-actualizarGestionBusqueda">Actualizar</a>
+                <a href="<?=rutaInicio?><?=estado?><?=eliminarEstado?>&id=<?=$listadoEstadosBuscados -> id?>" class="button button-eliminarGestionBusqueda">Eliminar</a>
+            </div>
+        <?php endwhile;?>
+    </div>
+</div>

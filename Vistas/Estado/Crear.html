@@ -1,0 +1,20 @@
+<div id="contenidoCentral">    
+    <?php if(isset($_SESSION['guardarestadoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarestadoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarestadoerror'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Crear estado</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=estado?><?=guardarEstado?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="nombreest">Nombre</label>
+                <input type="text" name="nombreest" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Crear">
+        </form>
+    </div>
+</div>

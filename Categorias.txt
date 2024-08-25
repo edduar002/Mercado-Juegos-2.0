@@ -1,0 +1,11 @@
+EC (Early Childhood) - Apto para niños de 3 años en adelante. Contenido adecuado para niños pequeños 
+
+E (Everyone) - Apto para todas las edades. Puede contener un poco de violencia de fantasía mínima y/o lenguaje leve.
+
+E10+ (Everyone 10 and older) - Apto para personas mayores de 10 años. Puede contener contenido más intenso de fantasía o violencia leve, lenguaje leve y/o temas mínimamente sugestivos.
+
+T (Teen) - Apto para personas mayores de 13 años. Puede contener violencia de fantasía, sangre mínima, lenguaje moderado y/o temas sugestivos.
+
+M (Mature) - Apto para personas mayores de 17 años. Puede contener violencia intensa, sangre y gore, lenguaje fuerte y/o temas sexuales y/o uso de drogas.
+
+AO (Adults Only) - Solo para adultos mayores de 18 años. Puede contener contenido gráfico y/o sexual explícito.

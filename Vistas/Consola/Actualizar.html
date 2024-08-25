@@ -1,0 +1,26 @@
+<div id="contenidoCentral">    
+    <?php if(isset($_SESSION['actualizarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarconsolaerror'); ?>
+    <?php if(isset($_SESSION['actualizarconsolasugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizarconsolasugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarconsolasugerencia'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Actualizar consola</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=consola?><?=actualizarConsola?>&id=<?=$consolaUnica -> id?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="nombreconsact">Nombre</label>
+                <input type="text" name="nombreconsact" value="<?=$consolaUnica -> nombre?>" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Actualizar">
+        </form>
+    </div>
+</div>

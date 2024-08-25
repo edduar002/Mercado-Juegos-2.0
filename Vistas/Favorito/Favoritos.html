@@ -1,0 +1,38 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['guardarfavoritoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarfavoritoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarfavoritoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarvideojuegoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarvideojuegoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarvideojuegoacierto'); ?>
+    <?php if(mysqli_num_rows($listadoFavoritos) == 0) : ?>
+        <h1>No Hay Ningun Videojuego Favorito</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="carrito">
+            <h1>Favoritos</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+                <?php while($favoritos = $listadoFavoritos -> fetch_object()) : ?>
+                    <tr>
+                        <td><img src="Recursos/ImagenesVideojuegos/<?=$favoritos -> imagenVideojuego?>" alt="Logo tienda" class="imgCarrito"></td>
+                        <td><?=$favoritos -> nombreVideojuego?></td>
+                        <td>$ <?=$favoritos -> precioVideojuego?></td>
+                        <td><a href="<?=rutaInicio?><?=favorito?><?=eliminarFavorito?>&idVideojuego=<?=$favoritos -> idVideojuego?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,49 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['eliminaradministradorusuarioacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminaradministradorusuarioacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminaradministradorusuarioacierto'); ?>
+    <?php if(isset($_SESSION['eliminaradministradorusuarioerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminaradministradorusuarioerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminaradministradorusuarioerror'); ?>
+    <?php if(mysqli_num_rows($listadoUsuarios) == 0) : ?>
+        <h1>No hay usuarios registrados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Gestion de usuarios</h1>
+        <hr>
+        <br>
+        <br>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=usuario?><?=buscarUsuario?>" method="post">
+                <input type="text" name="usuariob" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div id="gestiones">
+            <?php while($usuarios = $listadoUsuarios -> fetch_object()) : ?>
+                <div class="gestionUsuariosLista">
+                    <img src="Recursos/ImagenesUsuarios/<?=$usuarios -> foto?>">
+                    <h3><?=$usuarios -> nombre?> <?=$usuarios -> apellido?></h3>
+                    <h4>Fecha de registro: <?=$usuarios -> fechaRegistro?></h4>
+                    <?php if($usuarios -> activo == '0') : ?>
+                        <h4>Estado de la cuenta: Inactiva</h4>
+                        <?php if($usuarios -> fechaLimiteRecuperarCuenta == '1969-12-31') : ?>
+                            <h4>La cuenta de este usuario esta inactiva permanentemente</h4>
+                        <?php else : ?>
+                            <h4>Fecha limite para recuperar la cuenta: <?=$usuarios -> fechaLimiteRecuperarCuenta?></h4>
+                        <?php endif; ?>
+                    <?php elseif($usuarios -> activo == '1') : ?>
+                        <h4>Estado de la cuenta: Activa</h4>
+                        <a href="<?=rutaInicio?><?=usuario?><?=miPerfil?>&id=<?=$usuarios -> id?>" class="button button-gestionUsuario">Ver perfil</a>
+                    <?php endif; ?>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

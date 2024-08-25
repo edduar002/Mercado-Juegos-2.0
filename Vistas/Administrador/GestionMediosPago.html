@@ -1,0 +1,68 @@
+<div id="contenidoCentral">   
+    <?php if(isset($_SESSION['guardarmediopagoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarmediopagoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarmediopagoacierto'); ?>
+    <?php if(isset($_SESSION['restaurarmediopagoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarmediopagoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarmediopagoerror'); ?>
+    <?php if(isset($_SESSION['restaurarmediopagoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['restaurarmediopagoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarmediopagoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarmediopagoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarmediopagoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarmediopagoacierto'); ?>
+    <?php if(isset($_SESSION['actualizarmediopagoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarmediopagoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarmediopagoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarmediopagoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminarmediopagoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarmediopagoerror'); ?>
+    <a href="<?=rutaInicio?><?=medioPago?><?=verMediosPagoEliminados?>">Ver medios de pago eliminados</a>
+    <?php if(mysqli_num_rows($listadoMediosPago) == 0) : ?>
+        <h1>No hay medios de pago creados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Gestion de medios de pago</h1>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=medioPago?><?=buscarMedioPago?>" method="post">
+                <input type="text" name="mediopagob" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($medios = $listadoMediosPago -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$medios -> id?></td>
+                        <td><?=$medios -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=medioPago?><?=editarMedioPago?>&id=<?=$medios -> id?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href= "<?=rutaInicio?><?=medioPago?><?=eliminarMedioPago?>&id=<?=$medios -> id?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+    <a href="<?=rutaInicio?><?=medioPago?><?=crearMedioPago?>" class="button button-crearGestion">Crear</a>
+</div>

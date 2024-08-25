@@ -1,0 +1,36 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['guardarbloqueoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarbloqueoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarbloqueoerror'); ?>
+    <div id="loginYRegistro">
+        <h1>Perfil de <?=$listaDatosUsuario['usuario']['nombreUsuario']?> <?=$listaDatosUsuario['usuario']['apellidoUsuario']?></h1>
+        <hr>
+        <h3>Fecha de union: <?=$listaDatosUsuario['usuario']['fechaUsuario']?></h3>
+        <h3>Departamento: <?=$listaDatosUsuario['usuario']['departamentoUsuario']?></h3>
+        <h3>Municipio: <?=$listaDatosUsuario['usuario']['municipioUsuario']?></h3>
+        <h3>Videojuegos publicados: (<?=$publicados -> videojuegosPublicados?>)</h3>
+        <?php if($vendidos -> videojuegosVendidos == null) : ?>
+            <h3>Videojuegos vendidos: (0)</h3>
+        <?php else : ?>
+            <h3>Videojuegos vendidos: (<?=$vendidos -> videojuegosVendidos?>)</h3>
+        <?php endif;?>
+        <?php if(isset($_SESSION['loginexitoso'])) : ?>
+            <div id="bloquearUsuario">
+                <a class="button button-eliminarBloqueo" href="<?=rutaInicio?><?=bloqueo?><?=bloquear?>&aBloquear=<?=$listaDatosUsuario['usuario']['idUsuario']?>">Bloquear</a>
+            </div>
+        <?php endif;?>    
+    </div>
+    <div id="catalogo">
+        <?php foreach ($listaDatosUsuario['usuario']['videojuegos'] as $videojuego) : ?>
+            <div class="videojuego">
+                <img src="Recursos/ImagenesVideojuegos/<?=$videojuego['fotoVideojuego']?>" alt="Videojuego">
+                <h2><?=$videojuego['nombreVideojuego']?></h2>
+                <p>$COP <?=$videojuego['precioVideojuego']?></p>
+                <a href="<?=rutaInicio?><?=videojuego?><?=detalle?>&id=<?=$videojuego['idVideojuego']?>" class="button button-comprarCatalogo">Ver</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

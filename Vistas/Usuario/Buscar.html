@@ -1,0 +1,24 @@
+<div id="contenidoCentral">      
+    <div id="busqueda">
+        <h1>Usuarios que contienen "<?=$nombre?>"</h1>
+        <hr>
+        <?php while($listadoUsuariosBuscados = $listadoUsuarios -> fetch_object()) : ?>
+            <div class="gestionUsuariosLista">
+                <img src="Recursos/ImagenesUsuarios/<?=$listadoUsuariosBuscados -> foto?>">
+                <h3><?=$listadoUsuariosBuscados -> nombre?> <?=$listadoUsuariosBuscados -> apellido?></h3>
+                <h4>Fecha de registro: <?=$listadoUsuariosBuscados -> fechaRegistro?></h4>
+                <?php if($listadoUsuariosBuscados -> activo == '0') : ?>
+                    <h4>Estado de la cuenta: Inactiva</h4>
+                    <?php if($listadoUsuariosBuscados -> fechaLimiteRecuperarCuenta == '1969-12-31') : ?>
+                        <h4>La cuenta de este usuario esta inactiva permanentemente</h4>
+                    <?php else : ?>
+                        <h4>Fecha limite para recuperar la cuenta: <?=$listadoUsuariosBuscados -> fechaLimiteRecuperarCuenta?></h4>
+                    <?php endif; ?>
+                <?php elseif($listadoUsuariosBuscados -> activo == '1') : ?>
+                    <h4>Estado de la cuenta: Activa</h4>
+                    <a href="<?=rutaInicio?><?=administrador?><?=eliminarUsuarioAdministrador?>&id=<?=$listadoUsuariosBuscados -> id?>" class="button button-gestionUsuario">Eliminar cuenta</a>
+                <?php endif; ?>
+            </div>
+        <?php endwhile;?>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoVendidos) == 0) : ?>
+        <h1>No Hay Videojuegos Que Esten Gustando</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Videojuegos Que Mas Estan Gustando (Los 15 Que Mas Esten En Las Listas De Favoritos)</h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($destacados = $listadoVendidos -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesVideojuegos/<?=$destacados -> fotoVideojuego?>" alt="Videojuego">
+                    <h5><?=$destacados -> nombreVideojuego?></h5>
+                    <h5>Precio: <?=$destacados -> precioVideojuego?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

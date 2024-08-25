@@ -1,0 +1,53 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['guardarusuarioerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarusuarioerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('guardarusuarioerror'); ?>
+    <div id="loginYRegistro">
+        <h1>Registrarse Como Usuario</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=usuario?><?=guardarUsuario?>" method="post" enctype="multipart/form-data">
+            <div class="regisAdmin" >
+                <a href="<?=rutaInicio?><?=administrador?><?=registroAdmin?>">¿Quieres ser administrador?</a>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="nombreusu">Nombre</label>
+                <input type="text" name="nombreusu" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="apellidosusu">Apellidos</label>
+                <input type="text" name="apellidosusu" required>
+            </div>
+            <img src="Recursos/Logotipos/registro.png" class="registerImageUsuario" alt="Logo registro">
+            <div id="bloqueTextoRegistro">
+                <label for="fechaNacimientousu">Fecha de nacimiento</label>
+                <input type="date" name="fechaNacimientousu" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="telefonousu">Numero telefonico</label>
+                <input type="number" name="telefonousu" min="3000000000" max="3999999999" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="emailusu">Email</label>
+                <input type="email" name="emailusu" required>
+            </div>
+            <input type="file" name="foto" accept="image/*" required>
+            <label class="subirFotoPerfil">*Subir foto*</label>
+            <div id="bloqueTextoRegistro">
+                <label for="passwordusu">Contraseña</label>
+                <input type="password" name="passwordusu" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="departamentousu">Departamento</label>
+                <input type="text" name="departamentousu" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="municipiousu">Municipio</label>
+                <input type="text" name="municipiousu" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Registrarse">
+        </form>
+    </div>
+</div>

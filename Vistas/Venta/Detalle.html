@@ -1,0 +1,61 @@
+<div id="contenidoCentral">   
+    <?php if(isset($_SESSION['actualizarestadoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarestadoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarestadoacierto'); ?>
+    <?php if(isset($_SESSION['actualizarestadosugerencia'])) : ?>
+    <div class="alerta alerta-sugerencia">
+        <?=$_SESSION['actualizarestadosugerencia']; ?>
+    </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarestadosugerencia'); ?>
+    <?php if(isset($_SESSION['actualizarestadoerror'])) : ?>
+    <div class="alerta alerta-error">
+        <?=$_SESSION['actualizarestadoerror']; ?>
+    </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarestadoerror'); ?>
+    <div id="detalleCompraYVenta">
+        <h1>Detalle de la venta</h1>
+        <h3>Detalles del comprador</h3>
+        <h5>Nombre: <?=$detalle['venta']['nombreComprador']?></h5>
+        <h5>Apellido: <?=$detalle['venta']['apellidoComprador']?></h5>
+        <h5>Telefono: <?=$detalle['venta']['telefonoComprador']?></h5>
+        <h5>Correo: <?=$detalle['venta']['correoComprador']?></h5>
+        <h3>Detalles del envio</h3>
+        <h5>Departamento: <?=$detalle['venta']['departamentoEnvio']?></h5>
+        <h5>Municipio: <?=$detalle['venta']['municipioEnvio']?></h5>
+        <h5>Codigo postal: <?=$detalle['venta']['codigoPostalEnvio']?></h5>
+        <h5>Direccion: <?=$detalle['venta']['direccionEnvio']?></h5>
+        <h5>Barrio: <?=$detalle['venta']['barrioEnvio']?></h5>
+        <h3>Detalles del estado</h3>
+        <form action="<?=rutaInicio?><?=transaccion?><?=cambiarEstado?>&id=<?=$detalle['venta']['idTransaccion']?>" method="post">
+            <label for="estado">Estado</label>
+            <select name="estado" id="estado">
+                <?php while($estados = $listadoEstados -> fetch_object()) : ?>
+                    <option value="<?= $estados->id ?>" <?=($detalle['venta']['nombreEstado'] == $estados->nombre) ? 'selected' : '' ?>>
+                        <?= $estados->nombre ?>
+                    </option>
+                <?php endwhile; ?>
+            </select>
+            <input type="submit" value="Cambiar Estado">
+        </form>
+        <h3>Comprobante</h3>
+        <?php if($detalle['venta']['comprobante'] == NULL) : ?>
+            <p>El comprador no ha cargado el comprobante de pago</p>
+        <?php else : ?>
+            <img class="imgComprobante" src="Recursos/ImagenesComprobantes/<?=$detalle['venta']['comprobante']?>" alt="Videojuego">
+        <?php endif; ?>
+        <h3>Videojuegos</h3>
+        <h4>Precio Total: $ <?=$detalle['totalVenta']['totalVenta']?></h4>
+        <?php foreach ($detalle['venta']['videojuegos'] as $videojuego) : ?>
+            <div class="videojuegoCompraYVenta">
+                <h6>Precio: $ <?=$videojuego['precioVideojuegoVenta']?></h6>
+                <h6>Unidades: <?=$videojuego['unidadesCompra']?></h6>
+                <img src="Recursos/ImagenesVideojuegos/<?=$videojuego['imagenVideojuego']?>" alt="Videojuego">
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

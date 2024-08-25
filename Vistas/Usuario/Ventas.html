@@ -1,0 +1,30 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['verVentaError'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['verVentaError']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('verVentaError'); ?>
+    <?php if(mysqli_num_rows($listadoVentas) == 0) : ?>
+        <h1>No Hay Ninguna Venta</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="carrito">
+            <h1>Mis Ventas</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Factura</th>
+                    <th>Fecha y hora de realizacion</th>
+                </tr>
+                <?php while($lista = $listadoVentas -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$lista -> numeroFactura?></td>
+                        <td><?=$lista -> fechaHora?></td>
+                        <td><a href="<?=rutaInicio?><?=transaccion?><?=verVenta?>&factura=<?=$lista -> numeroFactura?>">Ver detalle</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

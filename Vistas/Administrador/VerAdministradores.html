@@ -1,0 +1,28 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoAdministradores) == 0) : ?>
+        <h1>No hay usuarios registrados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Administradores</h1>
+        <hr>
+        <br>
+        <br>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=administrador?><?=buscarAdministrador?>" method="post">
+                <input type="text" name="administradorb" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div id="gestiones">
+            <?php while($administradores = $listadoAdministradores -> fetch_object()) : ?>
+                <div class="gestionUsuariosLista">
+                    <img src="Recursos/ImagenesAdministradores/<?=$administradores -> foto?>">
+                    <h3><?=$administradores -> nombre?></h3>
+                    <h3><?=$administradores -> apellido?></h3>
+                    <h3>Edad: <?= Ayudas::obtenerEdad($administradores -> fechaNacimiento)?> años</h3>
+                    <h4>Fecha de registro: <?=$administradores -> fechaRegistro?></h4>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

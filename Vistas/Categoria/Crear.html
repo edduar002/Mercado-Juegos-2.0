@@ -1,0 +1,20 @@
+<div id="contenidoCentral">  
+    <?php if(isset($_SESSION['guardarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('guardarcategoriaerror'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Crear categoria</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=categoria?><?=guardarCategoria?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="nombrecat">Nombre</label>
+                <input type="text" name="nombrecat" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Crear">
+        </form>
+    </div>
+</div>

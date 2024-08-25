@@ -1,0 +1,68 @@
+<div id="contenidoCentral"> 
+    <?php if(isset($_SESSION['actualizarusoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarusoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarusoacierto'); ?>
+    <?php if(isset($_SESSION['restaurarusoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarusoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarusoerror'); ?>
+    <?php if(isset($_SESSION['restaurarusoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['restaurarusoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarusoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarusoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarusoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarusoacierto'); ?>
+    <?php if(isset($_SESSION['guardarusoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarusoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarusoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarusoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminarusoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarusoerror'); ?>
+    <a href="<?=rutaInicio?><?=uso?><?=verUsosEliminados?>">Ver usos eliminados</a>
+    <?php if(mysqli_num_rows($listadoUsos) == 0) : ?>
+        <h1>No hay usos creados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Gestion de usos</h1>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=uso?><?=buscarUso?>" method="post">
+                <input type="text" name="usob" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($usos = $listadoUsos -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$usos -> id?></td>
+                        <td><?=$usos -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=uso?><?=editarUso?>&id=<?=$usos -> id?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href="<?=rutaInicio?><?=uso?><?=eliminarUso?>&id=<?=$usos -> id?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+    <a href="<?=rutaInicio?><?=uso?><?=crearUso?>" class="button button-crearGestion">Crear</a>
+</div>

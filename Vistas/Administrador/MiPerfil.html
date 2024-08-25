@@ -1,0 +1,55 @@
+<div id="contenidoCentral">
+   <?php if(isset($_SESSION['actualizaradministradoracierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizaradministradoracierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizaradministradoracierto'); ?>
+    <?php if(isset($_SESSION['actualizaradministradorsugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizaradministradorsugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizaradministradorsugerencia'); ?>
+    <?php if(isset($_SESSION['actualizaradministradorerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizaradministradorerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizaradministradorerror'); ?>
+    <?php if(isset($_SESSION['eliminaradministradorerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminaradministradorerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminaradministradorerror'); ?>
+    <div id="loginYRegistro">
+        <h1 class="miPerfilA">Mi Perfil</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=administrador?><?=actualizarAdministrador?>&id=<?=$_SESSION['loginexitosoa'] -> id?>" method="post" enctype="multipart/form-data">
+            <img src="Recursos/ImagenesAdministradores/<?=$adminUnico -> foto?>" class="perfilImage" alt="usuario registro">
+            <div id="bloqueTextoRegistro">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value="<?=$adminUnico -> nombre?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" value="<?=$adminUnico -> apellido?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="telefono">Telefono</label>
+                <input type="text" name="telefono" value="<?=$adminUnico -> numeroTelefono?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="email">Email</label>
+                <input type="email" name="email" value="<?=$adminUnico -> correo?>" required>
+            </div>
+            <input type="file" name="foto" accept="image/*">
+            <label class="subirFotoPerfil">*Subir nueva*</label>
+            <div id="botonesadmin">
+                <input type="submit" class="btnRegistro-adminPerfil" value="Actualizar datos">
+                <a href="<?=rutaInicio?><?=administrador?><?=eliminarAdministrador?>&id=<?=$_SESSION['loginexitosoa'] -> id?>" class="eliminarCuentaMiPerfil" class="eliminarCuentaMiPerfil">Eliminar cuenta</a>
+            </div>
+        </form>
+    </div>
+</div>

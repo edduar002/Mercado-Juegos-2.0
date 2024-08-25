@@ -1,0 +1,42 @@
+<div id="contenidoCentral">  
+    <?php if(isset($_SESSION['guardaradministradorerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardaradministradorerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('guardaradministradorerror'); ?>
+    <div id="loginYRegistro">
+        <h1>Registrarse Como Administrador</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=administrador?><?=guardarAdmin?>" method="post" enctype="multipart/form-data">
+            <div id="bloqueTextoRegistro">
+                <label for="nombreadmin">Nombre</label>
+                <input type="text" name="nombreadmin" required>
+            </div>
+            <img src="Recursos/Logotipos/administracion.png" class="registerImageUsuario" alt="Logo registro">
+            <div id="bloqueTextoRegistro">
+                <label for="apellidosadmin">Apellidos</label>
+                <input type="text" name="apellidosadmin" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="fechaNacimientoadmin">Fecha de nacimiento</label>
+                <input type="date" name="fechaNacimientoadmin" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="telefonoadmin">Numero telefonico</label>
+                <input type="number" name="telefonoadmin" min="3100000000" max="3999999999" required>
+            </div>
+            <input type="file" name="foto" accept="image/*" required>
+            <label class="subirFotoPerfil">*Subir foto*</label>
+            <div id="bloqueTextoRegistro">
+                <label for="emailadmin">Email</label>
+                <input type="email" name="emailadmin" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="passwordadmin">Contraseña</label>
+                <input type="password" name="passwordadmin" required>
+            </div>
+            <input type="submit" class="btnRegistro" value="Registrarse">
+        </form>
+    </div>
+</div>  

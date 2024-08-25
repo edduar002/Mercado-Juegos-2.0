@@ -1,0 +1,42 @@
+<div id="contenidoCentral">    
+    <?php if(isset($_SESSION['actualizarenvioerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarenvioerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarenvioerror'); ?>
+    <?php if(isset($_SESSION['actualizarenviosugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizarenviosugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarenviosugerencia'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Actualizar envio</h1>
+        <hr>
+        <img src="Recursos/Logotipos/casa.png" class="imagenGestion" alt="">
+        <form action="<?=rutaInicio?><?=envio?><?=actualizarConsola?>&id=<?=$envioUnico -> id?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="departamento">Departamento</label>
+                <input type="text" name="departamento" value="<?=$envioUnico -> departamento?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="municipio">Municipio</label>
+                <input type="text" name="municipio" value="<?=$envioUnico -> municipio?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="codigoPostal">Codigo Postal</label>
+                <input type="number" name="codigoPostal" min="600000" value="<?=$envioUnico -> codigoPostal?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="barrio">Barrio</label>
+                <input type="text" name="barrio" value="<?=$envioUnico -> barrio?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="direccion">Direccion</label>
+                <textarea name="direccion" id="direccion" required><?=$envioUnico -> direccion?></textarea>
+            </div>
+            <input type="submit" class="btnRegistro" value="Actualizar">
+        </form>
+    </div>
+</div>

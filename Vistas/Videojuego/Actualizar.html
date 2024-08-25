@@ -1,0 +1,28 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['actualizarvideojuegosugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizarvideojuegosugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarvideojuegosugerencia'); ?>
+    <div id="loginYRegistro">
+        <h1>Actualizar videojuego</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=videojuego?><?=actualizarVideojuego?>&id=<?=$videojuegoUnico['videojuego']['idVideojuego']?>" method="post">
+            <img src="Recursos/ImagenesVideojuegos/<?=$videojuegoUnico['videojuego']['imagenVideojuego']?>" class="ventaImage" alt="Logo videojuego">
+            <div id="bloqueTextoRegistro">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" min="0" value="<?=$videojuegoUnico['videojuego']['stockVideojuego']?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" min="0" value="<?=$videojuegoUnico['videojuego']['precioVideojuego']?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="descripcionvid">Descripcion</label>
+                <textarea name="descripcionvid" id="descripcionvid" required><?=$videojuegoUnico['videojuego']['descripcionVideojuego']?></textarea>
+            </div>
+            <input type="submit" class="btnRegistro" value="Actualizar">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['eliminarvideojuegoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarvideojuegoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarvideojuegoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarvideojuegoerror'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarvideojuegoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarvideojuegoerror'); ?>
+    <?php if(isset($_SESSION['aumentarcantidaderror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['aumentarcantidaderror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('aumentarcantidaderror'); ?>
+    <?php if(isset($_SESSION['disminuircantidaderror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['disminuircantidaderror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('disminuircantidaderror'); ?>
+    <?php if(count($listadoCarritos) == 0) : ?>
+        <h1>No Hay Ningun Videojuego Agregado Al Carrito</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="carrito">
+            <h1>Carrito</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Unidades</th>
+                </tr>
+                <?php foreach ($listadoCarritos['carrito']['videojuegos'] as $videojuego) : ?>
+                    <tr>
+                        <td><img src="Recursos/ImagenesVideojuegos/<?=$videojuego['imagenVideojuegoCarrito']?>" alt="Logo tienda" class="imgCarrito"></td>
+                        <td><?=$videojuego['nombreVideojuegoCarrito']?></td>
+                        <td>$ <?=$videojuego['precioVideojuegoCarrito']?></td>
+                        <td>
+                            <?php if($videojuego['unidadesCarrito'] > 1) : ?>
+                                <a href="<?=rutaInicio?><?=carrito?><?=disminuirUnidades?>&idVideojuego=<?=$videojuego['idVideojuegoCarrito']?>" class="buttonDisminuirCarrito">-</a>
+                            <?php endif; ?>    
+                                <?=$videojuego['unidadesCarrito']?>
+                            <?php if($videojuego['unidadesCarrito'] < $videojuego['stockVideojuego']) : ?>    
+                                <a href="<?=rutaInicio?><?=carrito?><?=aumentarUnidades?>&idVideojuego=<?=$videojuego['idVideojuegoCarrito']?>" class="buttonAumentarCarrito">+</a>
+                            <?php endif; ?>   
+                        </td>
+                        <td>
+                            <a href="<?=rutaInicio?><?=carrito?><?=eliminarVideojuegoCarrito?>&idVideojuego=<?=$videojuego['idVideojuegoCarrito']?>" class="button button-eliminarVideojuego">Eliminar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <div id="estadisticasCarrito">
+                <a href="<?=rutaInicio?><?=carrito?><?=eliminarCarrito?>&idVideojuego=<?=$videojuego['idVideojuegoCarrito']?>" class="buttoneliminarCarrito">Eliminar</a>
+                <a href="<?=rutaInicio?><?=transaccion?><?=transaccionVideojuego?>&carrito=true">Continuar</a>
+                <h3>Total: $ <?=$listadoCarritos['totalCarrito']['totalCarrito']?></h3>
+            </div>
+        </div>
+    <?php endif; ?> 
+</div>

@@ -1,0 +1,25 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoDestacados) == 0) : ?>
+        <h1>No Hay Videojuegos Destacados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Videojuegos Mas Destacados (Los 10 Que Mas Se Hayan Vendido)</h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($destacados = $listadoDestacados -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesVideojuegos/<?=$destacados -> fotoVideojuego?>" alt="Videojuego">
+                    <h5><?=$destacados -> nombreVideojuego?></h5>
+                    <h5><?=$destacados -> nombreConsola?></h5>
+                    <h5><?=$destacados -> nombreUso?></h5>
+                    <h5>Precio: <?=$destacados -> precioVideojuego?></h5>
+                    <h5>Veces que se ha comprado: <?=$destacados -> vecesComprado?></h5>
+                    <h5>Total cantidades compradas: <?=$destacados -> unidadesCompradas?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,68 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['eliminarestadoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarestadoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarestadoacierto'); ?>
+    <?php if(isset($_SESSION['restaurarestadoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarestadoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarestadoerror'); ?>
+    <?php if(isset($_SESSION['restaurarestadoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['restaurarestadoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarestadoacierto'); ?>
+    <?php if(isset($_SESSION['actualizarestadoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarestadoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarestadoacierto'); ?>
+    <?php if(isset($_SESSION['guardarestadoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarestadoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarestadoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarestadoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminarestadoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarestadoerror'); ?>
+    <a href="<?=rutaInicio?><?=estado?><?=verEstadosEliminados?>">Ver estados eliminados</a>
+    <?php if(mysqli_num_rows($listadoEstados) == 0) : ?>
+        <h1>No hay estados creados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Gestion de estados</h1>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=estado?><?=buscarEstado?>" method="post">
+                <input type="text" name="estadob" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($estados = $listadoEstados -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$estados -> id?></td>
+                        <td><?=$estados -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=estado?><?=editarEstado?>&id=<?=$estados -> id?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href="<?=rutaInicio?><?=estado?><?=eliminarEstado?>&id=<?=$estados -> id?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+    <a href="<?=rutaInicio?><?=estado?><?=crearEstado?>" class="button button-crearGestion">Crear</a>
+</div>

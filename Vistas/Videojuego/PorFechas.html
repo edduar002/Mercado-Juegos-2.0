@@ -1,0 +1,21 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoVideojuegos) == 0) : ?>
+        <h1>No Hay Videojuegos Que Hayan Sido Comprados Entre <?=$fechaInicial?> Y <?=$fechaFinal?></h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Videojuegos Que Han Sido Comprados Entre <?=$fechaInicial?> Y <?=$fechaFinal?></h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($destacados = $listadoVideojuegos -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesVideojuegos/<?=$destacados -> foto?>" alt="Videojuego">
+                    <h5><?=$destacados -> nombre?></h5>
+                    <h5>Precio: <?=$destacados -> precio?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

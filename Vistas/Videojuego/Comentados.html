@@ -1,0 +1,24 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoComentados) == 0) : ?>
+        <h1>No Hay Videojuegos Comentados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Videojuegos Mas Comentados (Los 10 Que Mas Se Hayan Comentado)</h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($comentados = $listadoComentados -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesVideojuegos/<?=$comentados -> fotoVideojuego?>" alt="Videojuego">
+                    <h5><?=$comentados -> nombreVideojuego?></h5>
+                    <h5><?=$comentados -> nombreConsola?></h5>
+                    <h5><?=$comentados -> nombreUso?></h5>
+                    <h5>Precio: <?=$comentados -> precioVideojuego?></h5>
+                    <h5>Veces que se ha comentado: <?=$comentados -> vecesComentado?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

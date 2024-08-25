@@ -1,0 +1,46 @@
+<div id="contenidoCentral">     
+    <?php if(isset($_SESSION['guardarbloqueoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarbloqueoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarbloqueoacierto'); ?>
+    <?php if(isset($_SESSION['guardardesbloqueoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardardesbloqueoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardardesbloqueoacierto'); ?>
+    <?php if(isset($_SESSION['guardardesbloqueoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardardesbloqueoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardardesbloqueoerror'); ?>
+    <?php if(mysqli_num_rows($listadoBloqueos) == 0) : ?>
+        <h1>No Hay Ningun Usuario Bloqueado</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="carrito">
+            <h1>Mis Bloqueos</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Motivo</th>
+                    <th>Fecha y hora</th>
+                </tr>
+                <?php while($bloqueos = $listadoBloqueos -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$bloqueos -> nombreBloqueado?></td>
+                        <td><?=$bloqueos -> apellidoBloqueado?></td>
+                        <td><?=$bloqueos -> motivoBloqueo?></td>
+                        <td><?=$bloqueos -> fechaBloqueo?></td>
+                        <td><a href="<?=rutaInicio?><?=bloqueo?><?=desbloquear?>&usuarioBloqueo=<?=$bloqueos -> idUsuarioBloqueado?>" class="button button-eliminarBloqueo">Desbloquear</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

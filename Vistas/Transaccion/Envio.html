@@ -1,0 +1,38 @@
+<div id="contenidoCentral">      
+    <div id="loginYRegistro">
+        <form action="<?=rutaInicio?><?=transaccion?><?=guardarCompra?>&opcionCompra=<?=$opcionCarrito?>" method="post">
+            <?php if($opcionCarrito == 1) : ?>
+                <?php foreach ($listadoCarritos['carrito']['videojuegos'] as $videojuego) : ?>
+                    <input type="hidden" name="unidad[]" value="<?=$videojuego['unidadesCarrito']?>">
+                    <input type="hidden" name="idVideojuego[]" value="<?=$videojuego['idVideojuegoCarrito']?>">
+                <?php endforeach; ?>
+            <?php elseif($opcionCarrito == 2) : ?>    
+                <input type="hidden" name="unidad" value="<?=$unidadComprar?>">
+                <input type="hidden" name="idVideojuego" value="<?=$idVideojuego?>">
+            <?php endif ;?>      
+            <?php if(mysqli_num_rows($listadoEnvios) == 0) : ?>
+                <h1>No hay envios creados</h1>
+                <img src="Recursos/Logotipos/camion.png" class="camionenvio" alt="Envio">
+                <div id="enviosPagoTransaccion">
+                    <a class="button button-crearPagoEnvio" href="<?=rutaInicio?><?=envio?><?=crearEnvio?>">Crear envio</a>
+                </div>
+            <?php else : ?>
+                <h1>Datos del envio</h1>
+                <hr>
+                <?php while($envios = $listadoEnvios -> fetch_object()) : ?>
+                    <div id="enviosTransaccion">
+                        <input type="radio" id="idEnvio" name="idEnvio" value="<?=$envios -> id?>" checked>
+                        <label for="idEnvio"><?=$envios -> departamento?></label>
+                        <label for="idEnvio"><?=$envios -> municipio?></label>
+                        <label for="idEnvio"><?=$envios -> codigoPostal?></label>
+                        <label for="idEnvio"><?=$envios -> barrio?></label>
+                        <label for="idEnvio"><?=$envios -> direccion?></label>
+                    </div>
+                <?php endwhile; ?>
+            <div id="botonEnvioYPago">
+                <input type="submit" class="btnRegistro" value="Confirmar Pago">
+            </div> 
+            <?php endif; ?>
+        </form>
+    </div>
+</div>

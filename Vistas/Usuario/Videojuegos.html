@@ -1,0 +1,47 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['actualizarvideojuegoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarvideojuegoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarvideojuegoacierto'); ?>
+    <?php if(isset($_SESSION['guardarvideojuegoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarvideojuegoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarvideojuegoacierto'); ?>
+    <?php if(isset($_SESSION['eliminarvideojuegoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarvideojuegoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarvideojuegoacierto'); ?>
+    <?php if(mysqli_num_rows($listaVideojuegos) == 0) : ?>
+        <h1>No Hay Ningun Videojuego Creado</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="carrito">
+            <h1>Mis Videojuegos</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Consola</th>
+                    <th>Stock</th>
+                </tr>
+                <?php while($videojuegos = $listaVideojuegos -> fetch_object()) : ?>
+                    <tr>
+                        <td><a href="<?=rutaInicio?><?=videojuego?><?=detalle?>&id=<?=$videojuegos -> idVideojuego?>"><?=$videojuegos -> nombreVideojuego?></a></td>
+                        <td><?=$videojuegos -> precioVideojuego?></td>
+                        <td><?=$videojuegos -> nombreConsola?></td>
+                        <td><?=$videojuegos -> stockVideojuego?></td>
+                        <td><a href="<?=rutaInicio?><?=videojuego?><?=editarVideojuego?>&id=<?=$videojuegos -> idVideojuego?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href="<?=rutaInicio?><?=videojuego?><?=eliminarVideojuego?>&id=<?=$videojuegos -> idVideojuego?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

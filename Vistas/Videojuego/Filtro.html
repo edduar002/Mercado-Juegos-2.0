@@ -1,0 +1,19 @@
+<div id="contenidoCentral">   
+    <?php if(mysqli_num_rows($listadoFiltro) == 0) : ?>
+        <h1>No hay resultados</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>  
+        <div id="busqueda">
+            <h1>Resultados de la busqueda</h1>
+            <hr>
+            <?php while($listadoVidejuegosBuscados = $listadoFiltro -> fetch_object()) : ?>
+                <div class="videojuegoBusqueda">
+                    <img src="Recursos/ImagenesVideojuegos/<?=$listadoVidejuegosBuscados -> foto?>" alt="Videojuego">
+                    <h2><?=$listadoVidejuegosBuscados -> nombre?></h2>
+                    <p>$ <?=$listadoVidejuegosBuscados -> precio?></p>
+                    <a href="<?=rutaInicio?><?=videojuego?><?=detalle?>&id=<?=$listadoVidejuegosBuscados -> id?>">Ver</a>
+                </div>
+            <?php endwhile;?>
+        </div>
+    <?php endif; ?>
+</div>

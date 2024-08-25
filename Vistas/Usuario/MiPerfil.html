@@ -1,0 +1,57 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['actualizarusuarioacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarusuarioacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarusuarioacierto'); ?>
+    <?php if(isset($_SESSION['actualizarusuariosugerencia'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['actualizarusuariosugerencia']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarusuariosugerencia'); ?>
+    <?php if(isset($_SESSION['actualizarusuarioerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarusuarioerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarusuarioerror'); ?>
+    <div id="loginYRegistro">
+        <h1>Mi Perfil</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=usuario?><?=actualizarUsuario?>&id=<?=$id?>" method="post" enctype="multipart/form-data">
+            <img src="Recursos/ImagenesUsuarios/<?=$usuarioUnico -> foto?>" class="perfilImage" alt="usuario registro">
+            <div id="bloqueTextoRegistro">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value="<?=$usuarioUnico -> nombre?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" value="<?=$usuarioUnico -> apellido?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="email">Email</label>
+                <input type="email" name="email" value="<?=$usuarioUnico -> correo?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="telefono">Telefono</label>
+                <input type="number" name="telefono" min="3000000000" max="3999999999" value="<?=$usuarioUnico -> numeroTelefono?>" required>
+            </div>
+            <input type="file" name="foto" accept="image/*">
+            <label class="subirFotoPerfil">*Subir nueva*</label>
+            <div id="bloqueTextoRegistro">
+                <label for="departamento">Departamento</label>
+                <input type="text" name="departamento" value="<?=$usuarioUnico -> departamento?>" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="municipio">Municipio</label>
+                <input type="text" name="municipio" value="<?=$usuarioUnico -> municipio?>" required>
+            </div>
+            <div id="botonesusuario">
+                <input type="submit" class="btnRegistro-adminPerfil" value="Actualizar datos">
+                <a href="<?=rutaInicio?><?=usuario?><?=eliminarUsuario?>&id=<?=$id?>" class="eliminarCuentaMiPerfil">Eliminar cuenta</a>
+            </div>
+        </form>
+    </div>
+</div>

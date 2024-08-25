@@ -1,0 +1,24 @@
+<div id="contenidoCentral">
+    <?php if(mysqli_num_rows($listadoComentadores) == 0) : ?>
+        <h1>No Hay Usuarios Comentadores</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Comentadores mas destacados (Los 5 Que Mas Videojuegos Hayan Comentado)</h1>
+        <hr>
+        <br>
+        <br>
+        <br>
+        <div id="gestionDeDestacados">
+            <?php while($comentadores = $listadoComentadores -> fetch_object()) : ?>
+                <div class="destacados">
+                    <img src="Recursos/ImagenesUsuarios/<?=$comentadores -> fotoComprador?>" alt="Comprador">
+                    <h5><?=$comentadores -> nombreComprador?></h5>
+                    <h5><?=$comentadores -> apellidoComprador?></h5>
+                    <h5>Fecha de registro: <?=$comentadores -> fechaRegistroComprador?></h5>
+                    <h5>Edad: <?=Ayudas::obtenerEdad($comentadores -> fechaNacimiento)?></h5>
+                    <h5>Videojuegos comentados: <?=$comentadores -> comentador?></h5>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+</div>

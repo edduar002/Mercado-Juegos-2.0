@@ -1,0 +1,30 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['restaurarcategoriaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarcategoriaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarcategoriaerror'); ?>
+    <?php if(mysqli_num_rows($listadoCategorias) == 0) : ?>
+        <h1>No hay categorias eliminadas</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Categorias eliminadas</h1>
+        <hr>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($categorias = $listadoCategorias -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$categorias -> id?></td>
+                        <td><?=$categorias -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=categoria?><?=restaurarCategoria?>&id=<?=$categorias -> id?>" class="button button-eliminarVideojuego">Recuperar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

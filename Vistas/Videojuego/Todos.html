@@ -1,0 +1,29 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['guardarfavoritoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarfavoritoerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('catalogofavoritot'); ?>
+    <?php Ayudas::eliminarSesion('guardarfavoritoerror'); ?>
+    <?php if(mysqli_num_rows($listadoTodos) > 0) : ?>
+        <h1>Todos los Videojuegos</h1>
+    <?php else : ?>
+        <h1>No hay Videojuegos</h1>
+    <?php endif; ?>
+    <hr>    
+    <!-- SECCION VIDEOJUEGOS -->
+    <div id="catalogo">
+        <?php while($listado = $listadoTodos -> fetch_object()) : ?>
+            <div class="videojuego">
+                <div id="favoritoCatalogo">
+                    <a href="<?=rutaInicio?><?=favorito?><?=guardarFavorito?>&idVideojuego=<?=$listado -> id?>&catt=true"><img src="Recursos/Logotipos/estrella.png" alt="Imagen favorito"></a>
+                </div>
+                <img src="Recursos/ImagenesVideojuegos/<?=$listado -> foto?>" alt="Videojuego">
+                <h2><?=$listado -> nombre?></h2>
+                <p>$ <?=$listado -> precio?></p>
+                <a href="<?=rutaInicio?><?=videojuego?><?=detalle?>&id=<?=$listado -> id?>" class="button button-comprarCatalogo">Ver</a>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>

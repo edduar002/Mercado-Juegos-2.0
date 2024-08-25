@@ -1,0 +1,36 @@
+<div id="contenidoCentral">  
+    <?php if(isset($_SESSION['guardarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarconsolaerror'); ?>
+    <div id="loginYRegistro">
+        <h1 class="tituloCreacionGestiones">Crear Envio</h1>
+        <hr>
+        <img src="Recursos/Logotipos/direccion.png" class="envioImage" alt="">
+        <form action="<?=rutaInicio?><?=envio?><?=guardarEnvio?>" method="post">
+            <div id="bloqueTextoRegistro">
+                <label for="departamento">Departamento</label>
+                <input type="text" name="departamento" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="municipio">Municipio</label>
+                <input type="text" name="municipio" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="codigoPostal">Codigo Postal</label>
+                <input type="number" name="codigoPostal" min="600000" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="barrio">Barrio</label>
+                <input type="text" name="barrio" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="direccion">Direccion</label>
+                <textarea name="direccion" id="direccion" required></textarea>
+            </div>
+            <input type="submit" class="btnRegistro" value="Crear">
+        </form>
+    </div>
+</div>

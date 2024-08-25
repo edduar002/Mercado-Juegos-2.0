@@ -1,0 +1,68 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['eliminarconsolaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarconsolaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarconsolaacierto'); ?>
+    <?php if(isset($_SESSION['actualizarconsolaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['actualizarconsolaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarconsolaacierto'); ?>
+    <?php if(isset($_SESSION['restaurarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarconsolaerror'); ?>
+    <?php if(isset($_SESSION['restaurarconsolaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['restaurarconsolaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarconsolaacierto'); ?>
+    <?php if(isset($_SESSION['guardarconsolaacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarconsolaacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarconsolaacierto'); ?>
+    <?php if(isset($_SESSION['eliminarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['eliminarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarconsolaerror'); ?>
+    <a href="<?=rutaInicio?><?=consola?><?=verConsolasEliminadas?>">Ver consolas eliminadas</a>
+    <?php if(mysqli_num_rows($listadoConsolas) == 0) : ?>
+        <h1>No hay consolas creadas</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <div id="busquedaGestiones">
+            <form action="<?=rutaInicio?><?=consola?><?=buscarConsola?>" method="post">
+                <input type="text" name="consolab" required>
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+        <h1>Gestion de consolas</h1>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($consolas = $listadoConsolas -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$consolas -> id?></td>
+                        <td><?=$consolas -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=consola?><?=editarConsola?>&id=<?=$consolas -> id?>" class="button button-actualizarVideojuego">Actualizar</a></td>
+                        <td><a href="<?=rutaInicio?><?=consola?><?=eliminarConsola?>&id=<?=$consolas -> id?>" class="button button-eliminarVideojuego">Eliminar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+    <a href="<?=rutaInicio?><?=consola?><?=crearConsola?>" class="button button-crearGestion">Crear</a>
+</div>

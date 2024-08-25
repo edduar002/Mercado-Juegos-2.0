@@ -1,0 +1,30 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['restaurarconsolaerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['restaurarconsolaerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('restaurarconsolaerror'); ?>
+    <?php if(mysqli_num_rows($listadoConsolas) == 0) : ?>
+        <h1>No hay consolas eliminadas</h1>
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php else : ?>
+        <h1>Consolas eliminadas</h1>
+        <hr>
+        <div id="gestiones">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+                <?php while($consolas = $listadoConsolas -> fetch_object()) : ?>
+                    <tr>
+                        <td><?=$consolas -> id?></td>
+                        <td><?=$consolas -> nombre?></td>
+                        <td><a href="<?=rutaInicio?><?=consola?><?=restaurarConsola?>&id=<?=$consolas -> id?>" class="button button-eliminarVideojuego">Recuperar</a></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>

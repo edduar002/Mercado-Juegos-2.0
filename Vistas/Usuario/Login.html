@@ -1,0 +1,57 @@
+<div id="contenidoCentral">      
+    <?php if(isset($_SESSION['comentariopendiente'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['comentariopendiente']; ?>
+        </div>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['favoritopendiente'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['favoritopendiente']; ?>
+        </div>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['carritopendiente'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['carritopendiente']; ?>
+        </div>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['iniciodesesion'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['iniciodesesion']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('iniciodesesion'); ?>
+    <?php if(isset($_SESSION['guardarusuarioacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardarusuarioacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarusuarioacierto'); ?>
+    <?php if(isset($_SESSION['guardaradministradoracierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['guardaradministradoracierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardaradministradoracierto'); ?>
+    <div id="loginYRegistro">
+        <?php if(isset($_SESSION['error_login'])) : ?>
+            <div class="alerta alerta-error">
+                <?=$_SESSION['error_login']; ?>
+            </div>
+        <?php endif; ?> 
+        <?php Ayudas::eliminarSesion('error_login'); ?>
+        <h1>Login</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=usuario?><?=loginUsuario?>" method="post">
+            <img src="Recursos/Logotipos/login.png" class="loginImage" alt="Logo login">
+            <div id="bloqueTextoLogin">
+                <label for="email">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div id="bloqueTextoLogin">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" value="Educopi1." required>
+            </div>
+            <input type="submit" class="btnLogin" value="Ingresar">
+        </form>
+    </div>
+</div>

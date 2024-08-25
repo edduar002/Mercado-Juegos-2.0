@@ -1,0 +1,120 @@
+<?php if(mysqli_num_rows($listadoTodos) > 0) : ?>
+    <?php require_once 'Vistas/Layout/Filtro.html' ?>
+<?php endif; ?>
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['loginexitosoinfo'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['loginexitosoinfo']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('loginexitosoinfo'); ?>
+    <?php if(isset($_SESSION['guardarfavoritoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarfavoritoerror']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('catalogofavorito'); ?>
+    <?php Ayudas::eliminarSesion('guardarfavoritoerror'); ?>
+    <?php if(isset($_SESSION['logincerrado'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['logincerrado']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('logincerrado'); ?>
+    <?php if(isset($_SESSION['caducidad'])) : ?>
+        <div class="alerta alerta-sugerencia">
+            <?=$_SESSION['caducidad']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('caducidad'); ?>
+    <?php if(isset($_SESSION['eliminarusuarioacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarusuarioacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarusuarioacierto'); ?>
+    <?php if(isset($_SESSION['eliminaradministradoracierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminaradministradoracierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminaradministradoracierto'); ?>
+    <?php if(isset($_SESSION['videojuegofavorito'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['videojuegofavorito']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('videojuegofavorito'); ?>
+    <?php if(isset($_SESSION['cargarperfiladminerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['cargarperfiladminerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('cargarperfiladminerror'); ?>
+    <?php if(isset($_SESSION['cargarperfilusuarioerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['cargarperfilusuarioerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('cargarperfilusuarioerror'); ?>
+    <?php if(isset($_SESSION['errorinesperado'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['errorinesperado']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('errorinesperado'); ?>
+    <?php if(isset($_SESSION['guardarbloqueoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['guardarbloqueoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('guardarbloqueoerror'); ?>
+    <?php if(isset($_SESSION['actualizarvideojuegoerror'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['actualizarvideojuegoerror']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('actualizarvideojuegoerror'); ?>
+    <?php if(isset($_SESSION['verCompraError'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['verCompraError']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('verCompraError'); ?>
+    <?php if(isset($_SESSION['eliminarcarritoacierto'])) : ?>
+        <div class="alerta alerta-acierto">
+            <?=$_SESSION['eliminarcarritoacierto']; ?>
+        </div>
+    <?php endif; ?>
+    <?php Ayudas::eliminarSesion('eliminarcarritoacierto'); ?>
+    <?php if(mysqli_num_rows($listadoTodos) == 0) : ?>
+        <h1>No Hay Ningun Videojuego</h1>
+        <hr>  
+        <img class="noEncontradoLista" src="Recursos/Logotipos/encontrar.png" alt="">
+    <?php elseif(mysqli_num_rows($listadoTodos) > 0 && mysqli_num_rows($listadoTodos) <= 6) : ?>
+        <h1>Todos Los Videojuegos</h1>
+        <hr>  
+    <?php elseif(mysqli_num_rows($listadoTodos) > 6) : ?>
+        <h1>Algunos Videojuegos</h1>
+        <hr>    
+    <?php endif; ?> 
+    <!-- SECCION VIDEOJUEGOS -->
+    <div id="catalogo">
+        <?php while($listado = $listadoAlgunos -> fetch_object()) : ?>
+            <div class="videojuego">
+                <div id="favoritoCatalogo">
+                    <a href="<?=rutaInicio?><?=favorito?><?=guardarFavorito?>&idVideojuego=<?=$listado -> id?>&cat=true"><img src="Recursos/Logotipos/estrella.png" alt="Imagen favorito"></a>
+                </div>
+                <img src="Recursos/ImagenesVideojuegos/<?=$listado -> foto?>" alt="Videojuego">
+                <h2><?=$listado -> nombre?></h2>
+                <p>$ <?=$listado -> precio?></p>
+                <a href="<?=rutaInicio?><?=videojuego?><?=detalle?>&id=<?=$listado -> id?>" class="button button-comprarCatalogo">Ver</a>
+            </div>
+        <?php endwhile; ?>
+    </div>
+    <div id="verTodos">
+        <?php if(mysqli_num_rows($listadoTodos) > 6) : ?>
+            <a href="<?=rutaInicio?><?=videojuego?><?=todos?>">Ver todos los videojuegos</a>
+        <?php endif; ?>
+    </div>
+</div>

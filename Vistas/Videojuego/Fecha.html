@@ -1,0 +1,21 @@
+<div id="contenidoCentral">
+    <?php if(isset($_SESSION['errorfechas'])) : ?>
+        <div class="alerta alerta-error">
+            <?=$_SESSION['errorfechas']; ?>
+        </div>
+    <?php endif; ?> 
+    <?php Ayudas::eliminarSesion('errorfechas'); ?>
+    <h1>Busar videojuegos que han sido vendidos en un tiempo determinado</h1>
+    <hr>
+    <form action="<?=rutaInicio?><?=transaccion?><?=verComprasTiempo?>" method="post">
+        <div id="bloqueTextoRegistro">
+            <label for="fechaInicial">Fecha inicial</label>
+            <input type="date" name="fechaInicial" required>
+        </div>
+        <div id="bloqueTextoRegistro">
+            <label for="fechaFinal">Fecha final</label>
+            <input type="date" name="fechaFinal" required>
+        </div>
+        <input type="submit" class="btnRegistro-btnFechas" value="Buscar">
+    </form>
+</div>

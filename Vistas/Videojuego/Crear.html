@@ -1,0 +1,56 @@
+<div id="contenidoCentral">      
+    <div id="loginYRegistro">
+        <?php if(isset($_SESSION['guardarvideojuegoerror'])) : ?>
+            <div class="alerta alerta-error">
+                <?=$_SESSION['guardarvideojuegoerror']; ?>
+            </div>
+        <?php endif; ?>
+        <?php Ayudas::eliminarSesion('guardarvideojuegoerror'); ?>
+        <h1>Crear videojuego</h1>
+        <hr>
+        <form action="<?=rutaInicio?><?=videojuego?><?=guardar?>" method="post" enctype="multipart/form-data">
+            <img src="Recursos/Logotipos/videojuego.png" class="registerImage" alt="Logo videojuego">
+            <div id="bloqueTextoRegistro">
+                <label for="nombrevid">Nombre</label>
+                <input type="text" name="nombrevid" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="categoriasvid">Categoria/as</label>
+                <?php while($categorias = $listadoCategorias -> fetch_object()) : ?>
+                    <input type="checkbox" name="categoriasvid[]" value="<?=$categorias -> id?>"><?=$categorias -> nombre?><br>
+                <?php endwhile; ?>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="consolavid">Consola</label>
+                <select name="consolavid" id="consolavid">
+                    <?php while($consolas = $listadoConsolas -> fetch_object()) : ?>
+                        <option value="<?=$consolas -> id?>"><?=$consolas -> nombre?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <input type="file" name="foto" accept="image/*" required>
+            <label class="subirFotoPerfil">*Subir foto*</label>
+            <div id="bloqueTextoRegistro">
+                <label for="usovid">Uso</label>
+                <select name="usovid" id="usovid">
+                    <?php while($usos = $listadoUsos -> fetch_object()) : ?>
+                        <option value="<?=$usos -> id?>"><?=$usos -> nombre?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="preciovid">Precio</label>
+                <input type="number" name="preciovid" min="0" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="stockvid">Stock</label>
+                <input type="number" name="stockvid" min="0" required>
+            </div>
+            <div id="bloqueTextoRegistro">
+                <label for="descripcionvid">Descripcion</label>
+                <textarea name="descripcionvid" id="descripcionvid" required></textarea>
+            </div>
+            <input type="submit" class="btnRegistro" value="Publicar">
+        </form>
+    </div>
+</div>
