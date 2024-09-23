@@ -188,7 +188,7 @@
         }
 
         /*
-        Funcion para comprobar si un videojuego ya ha sido agregado a favoritos
+        Funcion para comprobar si un videojuego ya ha sido agregado a la sección favoritos
         */
 
         public function comprobarCarrito($idVideojuego){ 
@@ -201,7 +201,7 @@
             /*Retornar el resultado*/
             return $resultado;
         }
-
+ 
     }
 
 ?>
