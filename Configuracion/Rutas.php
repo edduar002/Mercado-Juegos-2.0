@@ -5,11 +5,9 @@
     */
 
     /*Ruta de alojamiento local*/
-
     define("rutaInicio", "http://localhost/Mercado-Juegos");
 
     /*Ruta para usuario*/
-
     define("usuario", "/?controller=UsuarioController");
     define("login", "&action=login");
     define("registro", "&action=registro");
@@ -34,7 +32,6 @@
     define("verUsuariosMasComentadores", "&action=verUsuariosComentadores");
 
     /*Ruta para videojuego*/
-
     define("videojuego", "/?controller=VideojuegoController");
     define("inicio", "&action=inicio");
     define("detalle", "&action=detalle");
@@ -54,7 +51,6 @@
     define("verVideojuegosMayorVendedor", "&action=verVideojuegosMayorVendedor");
 
     /*Ruta para carrito*/
-
     define("carrito", "/?controller=CarritoController");
     define("verCarrito", "&action=ver");
     define("guardarCarrito", "&action=guardar");
@@ -64,14 +60,12 @@
     define("disminuirUnidades", "&action=disminuirUnidades");
 
     /*Ruta para favorito*/
-
     define("favorito", "/?controller=FavoritoController");
     define("verFavorito", "&action=ver");
     define("guardarFavorito", "&action=guardar");
     define("eliminarFavorito", "&action=eliminarFavorito");
 
     /*Ruta para transaccion*/
-
     define("transaccion", "/?controller=TransaccionController");
     define("transaccionVideojuego", "&action=transaccionVideojuego");
     define("guardarCompra", "&action=guardar");
@@ -86,7 +80,6 @@
     define("verComprasTiempo", "&action=verPorFechas");
 
     /*Ruta para administrador*/
-
     define("administrador", "/?controller=AdministradorController");
     define("administrar", "&action=administrar");
     define("registroAdmin", "&action=registro");
@@ -105,7 +98,6 @@
     define("buscarAdministrador", "&action=buscar");
 
     /*Ruta para uso*/
-
     define("uso", "/?controller=UsoController");
     define("crearUso", "&action=crear");
     define("guardarUso", "&action=guardar");
@@ -117,7 +109,6 @@
     define("buscarUso", "&action=buscar");
 
     /*Ruta para envio*/
-
     define("envio", "/?controller=EnvioController");
     define("crearEnvio", "&action=crear");
     define("guardarEnvio", "&action=guardar");
@@ -126,7 +117,6 @@
     define("actualizarEnvio", "&action=actualizar");
 
     /*Ruta para estado*/
-
     define("estado", "/?controller=EstadoController");
     define("crearEstado", "&action=crear");
     define("guardarEstado", "&action=guardar");
@@ -138,7 +128,6 @@
     define("buscarEstado", "&action=buscar");
 
     /*Ruta para consola*/
-
     define("consola", "/?controller=ConsolaController");
     define("crearConsola", "&action=crear");
     define("guardarConsola", "&action=guardar");
@@ -150,7 +139,6 @@
     define("buscarConsola", "&action=buscar");
 
     /*Ruta para categoria*/
-
     define("categoria", "/?controller=CategoriaController");
     define("crearCategoria", "&action=crear");
     define("guardarCategoria", "&action=guardar");
@@ -162,20 +150,17 @@
     define("buscarCategoria", "&action=buscar");
 
     /*Ruta para chat*/
-
     define("chat", "/?controller=ChatController");
     define("chatear", "&action=chatear");
     define("verMensajes", "&action=verMensajes");
     define("enviarMensaje", "&action=enviarMensaje");
 
     /*Ruta para comentario*/
-
     define("comentario", "/?controller=ComentarioController");
     define("guardarComentario", "&action=guardar");
     define("eliminarComentario", "&action=eliminar");
 
     /*Ruta para bloqueo*/
-
     define("bloqueo", "/?controller=BloqueoController");
     define("bloquear", "&action=bloquear");
     define("desbloquear", "&action=desbloquear");
