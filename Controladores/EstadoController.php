@@ -406,7 +406,7 @@
                     /*Comprobar si el estado ha sido eliminado con exito*/
                     if($eliminado){
                         /*Crear la sesion y redirigir a la ruta pertinente*/
-                        Ayudas::crearSesionYRedirigir('restaurarestadoacierto', "La estado ha sido restaurado exitosamente", '?controller=AdministradorController&action=gestionarEstado');
+                        Ayudas::crearSesionYRedirigir('restaurarestadoacierto', "La estado ha sido restaurado con exito", '?controller=AdministradorController&action=gestionarEstado');
                     /*De lo contrario*/   
                     }else{
                         /*Crear la sesion y redirigir a la ruta pertinente*/
