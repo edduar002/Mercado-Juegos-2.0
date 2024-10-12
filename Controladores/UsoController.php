@@ -32,7 +32,7 @@
         }
 
         /*
-        Funcion para obtener el nombre del uso
+        Funcion para obtener el nombre del uso en concreto
         */
 
         public function obtenerNombre($id){
