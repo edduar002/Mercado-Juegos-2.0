@@ -25,7 +25,7 @@
         }
 
         /*
-        Funcion para bloquear a un usuario
+        Funcion para bloquear a un usuario en concreto
         */
 
         public function bloquear(){
