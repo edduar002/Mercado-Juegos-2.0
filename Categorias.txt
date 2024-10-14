@@ -8,4 +8,4 @@ T (Teen) - Apto para personas mayores de 13 años. Puede contener violencia de f
 
 M (Mature) - Apto para personas mayores de 17 años. Puede contener violencia intensa, sangre y gore, lenguaje fuerte y/o temas sexuales y/o uso de drogas.
 
-AO (Adults Only) - Solo para adultos mayores de 18 años. Puede contener contenido gráfico y/o sexual explícito.
+AO (Adults Only) - Solo para adultos mayores de 18 años. Puede contener contenido gráfico y/o sexual explícito. 
