@@ -31,6 +31,7 @@
             require_once "Vistas/Consola/Inactivas.html";
         }
 
+
         /*
         Funcion para obtener el nombre de la consola
         */
