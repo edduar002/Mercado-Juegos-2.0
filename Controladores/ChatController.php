@@ -10,7 +10,7 @@
     class ChatController{
 
         /*
-        Funcion para listar todos los chats
+        Funcion para listar todos los chats del usuario
         */
 
         public function chats(){
